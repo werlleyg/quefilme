@@ -16,7 +16,7 @@ export class ListMoviesEntity {
       movies: this.props.movies.map((movie) => ({
         image: movie.image,
         imdbID: movie.imdbID,
-        title: movie.image,
+        title: movie.title,
         type: movie.type,
         actors: movie.actors,
         description: movie.description,
@@ -27,12 +27,23 @@ export class ListMoviesEntity {
   }
 
   public addMovie(movie: MovieEntity): void {
-    this.props.movies = [...this.props.movies, movie];
+    this.props = {
+      ...this.props,
+      movies: [...this.props.movies, movie],
+    };
   }
 
   public removeMovie(imdbID: string): void {
-    this.props.movies = this.props.movies.filter(
-      (movie) => movie.imdbID !== imdbID,
-    );
+    this.props = {
+      ...this.props,
+      movies: this.props.movies.filter((movie) => movie.imdbID !== imdbID),
+    };
+  }
+
+  public clear(): void {
+    this.props = {
+      ...this.props,
+      movies: [],
+    };
   }
 }
