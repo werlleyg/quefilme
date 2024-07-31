@@ -1,7 +1,7 @@
-import { MovieEntity } from "../entities";
+import { ListMoviesEntity, MovieEntity } from "../entities";
 
 export interface MoviesRepository {
   getMovie: (imdbID: string) => Promise<MovieEntity>;
 
-  getMovieList: (title: string) => Promise<MovieEntity[]>;
+  getMovieList: (title: string) => Promise<ListMoviesEntity>;
 }
