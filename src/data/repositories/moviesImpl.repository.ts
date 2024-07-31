@@ -20,46 +20,54 @@ export class MoviesRepositoryImpl implements MoviesRepository {
   private readonly accessKey: string = Config.accessKey;
 
   async getMovie(imdbID: string): Promise<MovieEntity> {
-    let httpResponse = await this.httpClient.request({
-      url: `${this.url}?i=${imdbID}&apikey=${this.accessKey}`,
-      method: "get",
-    });
+    try {
+      let httpResponse = await this.httpClient.request({
+        url: `${this.url}?i=${imdbID}&apikey=${this.accessKey}`,
+        method: "get",
+      });
 
-    const result = httpResponse.body;
+      const result = httpResponse.body;
 
-    if (result?.Response === "False")
-      httpResponse = { ...httpResponse, statusCode: HttpStatusCode.notFound };
+      if (result?.Response === "False")
+        httpResponse = { ...httpResponse, statusCode: HttpStatusCode.notFound };
 
-    switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok:
-        return new MovieEntity(movieFromJson(result));
-      case HttpStatusCode.forbidden:
-        throw new AccessDeniedError();
-      case HttpStatusCode.notFound:
-        throw new NotFoundError();
-      default:
-        throw new UnexpectedError();
+      switch (httpResponse.statusCode) {
+        case HttpStatusCode.ok:
+          return new MovieEntity(movieFromJson(result));
+        case HttpStatusCode.forbidden:
+          throw new AccessDeniedError();
+        case HttpStatusCode.notFound:
+          throw new NotFoundError();
+        default:
+          throw new UnexpectedError();
+      }
+    } catch (error) {
+      throw new UnexpectedError();
     }
   }
 
   async getMovieList(title: string): Promise<ListMoviesEntity> {
-    const httpResponse = await this.httpClient.request({
-      url: `${this.url}?s=${title}&apikey=${this.accessKey}`,
-      method: "get",
-    });
-    const result = httpResponse.body;
+    try {
+      const httpResponse = await this.httpClient.request({
+        url: `${this.url}?s=${title}&apikey=${this.accessKey}`,
+        method: "get",
+      });
+      const result = httpResponse.body;
 
-    switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok:
-        const movies = (moviesFromJsonList(result?.Search) ?? []).map(
-          (movie) => new MovieEntity(movie),
-        );
-        return new ListMoviesEntity({ movies });
-
-      case HttpStatusCode.forbidden:
-        throw new AccessDeniedError();
-      default:
-        throw new UnexpectedError();
+      switch (httpResponse.statusCode) {
+        case HttpStatusCode.ok: {
+          const movies = (moviesFromJsonList(result?.Search) ?? []).map(
+            (movie) => new MovieEntity(movie),
+          );
+          return new ListMoviesEntity({ movies });
+        }
+        case HttpStatusCode.forbidden:
+          throw new AccessDeniedError();
+        default:
+          throw new UnexpectedError();
+      }
+    } catch (error) {
+      throw new UnexpectedError();
     }
   }
 }
