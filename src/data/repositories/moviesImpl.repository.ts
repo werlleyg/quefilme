@@ -1,4 +1,3 @@
-import { Result } from "./../../../node_modules/@next/eslint-plugin-next/node_modules/glob/dist/commonjs/glob.d";
 import {
   ListMoviesEntity,
   MovieEntity,
