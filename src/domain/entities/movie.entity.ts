@@ -48,7 +48,7 @@ export class MovieEntity {
     return {
       image: this.props.image,
       imdbID: this.props.imdbID,
-      title: this.props.image,
+      title: this.props.title,
       type: this.props.type,
       actors: this.props.actors,
       description: this.props.description,
