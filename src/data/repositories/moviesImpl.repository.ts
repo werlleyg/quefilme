@@ -12,7 +12,7 @@ import {
   NotFoundError,
   UnexpectedError,
 } from "@/domain/errors";
-import { MovieEntityHelper } from "@/helpers";
+import { movieFromJson, moviesFromJsonList } from "@/helpers";
 
 export class MoviesRepositoryImpl implements MoviesRepository {
   constructor(private readonly httpClient: HttpClient) {}
@@ -33,7 +33,7 @@ export class MoviesRepositoryImpl implements MoviesRepository {
 
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return new MovieEntity(MovieEntityHelper.fromJson(result));
+        return new MovieEntity(movieFromJson(result));
       case HttpStatusCode.forbidden:
         throw new AccessDeniedError();
       case HttpStatusCode.notFound:
@@ -52,9 +52,9 @@ export class MoviesRepositoryImpl implements MoviesRepository {
 
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
-        const movies = (
-          MovieEntityHelper.fromJsonList(result?.Search) ?? []
-        ).map((movie) => new MovieEntity(movie));
+        const movies = (moviesFromJsonList(result?.Search) ?? []).map(
+          (movie) => new MovieEntity(movie),
+        );
         return new ListMoviesEntity({ movies });
 
       case HttpStatusCode.forbidden:
