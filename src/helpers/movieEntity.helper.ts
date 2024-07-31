@@ -1,7 +1,7 @@
-import { MovieEntity } from "@/domain/entities";
+import { MovieEntityType } from "@/domain/entities";
 
 export class MovieEntityHelper {
-  static fromJson(data: any): MovieEntity {
+  static fromJson(data: any): MovieEntityType {
     return {
       image: data.Poster,
       imdbID: data.imdbID,
@@ -10,10 +10,13 @@ export class MovieEntityHelper {
       actors: data?.Actors,
       description: data?.Plot,
       genre: data?.Genre,
+      runtime: data?.Runtime,
     };
   }
 
-  static fromJsonList(dataList: any[]): MovieEntity[] {
+  static fromJsonList(dataList: any[]): MovieEntityType[] {
+    if (!dataList) return [];
+
     return dataList.map((data) => ({
       image: data.Poster,
       imdbID: data.imdbID,
@@ -22,6 +25,7 @@ export class MovieEntityHelper {
       actors: data?.Actors,
       description: data?.Plot,
       genre: data?.Genre,
+      runtime: data?.Runtime,
     }));
   }
 }
