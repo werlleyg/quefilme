@@ -1,4 +1,4 @@
-export type MovieEntity = {
+export type MovieEntityType = {
   title: string;
   imdbID: string;
   type: string;
