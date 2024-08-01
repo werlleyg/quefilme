@@ -1,8 +1,4 @@
-import {
-  ListMoviesEntity,
-  MovieEntity,
-  MovieEntityType,
-} from "@/domain/entities";
+import { ListMoviesEntity, MovieEntity } from "@/domain/entities";
 import { MoviesRepository } from "@/domain/repositories";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
 import { Config } from "@/shared";
