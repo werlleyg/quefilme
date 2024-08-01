@@ -1,4 +1,4 @@
-import { MovieEntity } from "@/domain/entities";
+import { ListMoviesEntity, MovieEntity } from "@/domain/entities";
 
 export const movieMock = new MovieEntity({
   image:
@@ -11,4 +11,8 @@ export const movieMock = new MovieEntity({
     "The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father, the ambitious celestial being Ego.",
   genre: "Action, Adventure, Comedy",
   runtime: "136 min.",
+});
+
+export const listMoviesMock: ListMoviesEntity = new ListMoviesEntity({
+  movies: new Array(5).fill(movieMock),
 });
