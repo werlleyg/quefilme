@@ -1,6 +1,6 @@
-import { MovieEntity } from "@/domain/entities";
+import { MovieEntityType } from "@/domain/entities";
 
-export const mockMovieEntity = (): MovieEntity => ({
+export const mockMovieEntity = (): MovieEntityType => ({
   image:
     "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg",
   imdbID: "tt3896198",
@@ -13,5 +13,5 @@ export const mockMovieEntity = (): MovieEntity => ({
   runtime: "136 min.",
 });
 
-export const mockListMoviesEntity = (): MovieEntity[] =>
+export const mockListMoviesEntity = (): MovieEntityType[] =>
   new Array(5).fill(mockListMoviesEntity);
