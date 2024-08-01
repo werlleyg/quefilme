@@ -1,7 +1,7 @@
 import { MovieEntity } from "../entities";
 
 export interface GetMovieUsecase {
-  load: (params: GetMovieUsecase.Params) => Promise<GetMovieUsecase.Model>;
+  exec: (params: GetMovieUsecase.Params) => Promise<GetMovieUsecase.Model>;
 }
 
 export namespace GetMovieUsecase {
