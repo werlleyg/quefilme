@@ -1,3 +1,4 @@
+import { UnexpectedError } from "@/domain/errors";
 import { MoviesRepository } from "@/domain/repositories";
 import { AiService } from "@/domain/services";
 import { getMovieSuggestionUsecase } from "@/domain/usecases";
@@ -16,7 +17,11 @@ export class GetMovieSuggestionImpl implements getMovieSuggestionUsecase {
 
     const promptResponse = await this.service.generateResponse(prompt);
 
-    const suggestMovieImdb = promptResponse.split(" - ")[1];
+    const parts = promptResponse?.split(" - ");
+    if (!parts || parts?.length < 2) {
+      throw new UnexpectedError();
+    }
+    const suggestMovieImdb = parts[1];
 
     return await this.repository.getMovie(suggestMovieImdb);
   }
