@@ -12,11 +12,14 @@ export default async function handler(
     return;
   }
 
-  if (method !== "GET") return res.status(400).json({ error: "Bad request!" });
+  if (method !== "GET")
+    return res.status(405).json({ error: "Method Not Allowed" });
 
   const { prompt } = query;
 
-  if (!prompt) return res.status(400).json({ error: "Put a valid prompt" });
+  if (!prompt || typeof prompt !== "string" || prompt.trim() === "") {
+    return res.status(400).json({ error: "Put a valid prompt" });
+  }
 
   const aiClient = new ChatGPTAiClient();
   const response = await aiClient.chat(prompt as string);
