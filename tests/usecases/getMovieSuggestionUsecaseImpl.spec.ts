@@ -8,6 +8,7 @@ import {
   movieMock,
 } from "./mocks/getMovieSuggestionUsecaseImpl.mock";
 import { ListMoviesEntity } from "@/domain/entities";
+import { UnexpectedError } from "@/domain/errors";
 
 type SutTypes = {
   repository: ReturnType<typeof mock<MoviesRepositoryImpl>>;
@@ -61,6 +62,14 @@ describe("getMovieSuggestionImpl", () => {
     const result = await sut.exec(listMoviesMock);
 
     expect(result).toEqual(movieMock);
+  });
+
+  it("Should throw UnexpectedError if service response format is invalid", async () => {
+    const { sut } = makeSut();
+
+    await expect(sut.exec(listMoviesMock)).rejects.toThrow(
+      new UnexpectedError(),
+    );
   });
 
   it("Should handle errors thrown by the repository", async () => {
