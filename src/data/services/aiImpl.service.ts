@@ -1,5 +1,6 @@
 import {
   AccessDeniedError,
+  BadRequestError,
   NotFoundError,
   UnexpectedError,
 } from "@/domain/errors";
@@ -26,6 +27,8 @@ export class AiServiceImpl implements AiService {
       }
       case HttpStatusCode.notFound:
         throw new NotFoundError();
+      case HttpStatusCode.badRequest:
+        throw new BadRequestError();
       default:
         throw new UnexpectedError();
     }
