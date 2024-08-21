@@ -12,8 +12,12 @@ export class ChatGPTAiClient implements AiClient {
       proxy: "",
     };
 
-    const response = await g4f.chatCompletion(messages, options);
-
-    return response;
+    try {
+      const response = await g4f.chatCompletion(messages, options);
+      return response;
+    } catch (error) {
+      console.error("Error getting response from GPT:", error);
+      throw new Error("Failed to communicate with the AI service.");
+    }
   }
 }
