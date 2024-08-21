@@ -2,7 +2,11 @@ import { AiServiceImpl } from "@/data/services";
 import { HttpClientSpy, mockGenerateResponse } from "../mocks";
 import { Config } from "@/shared";
 import { HttpStatusCode } from "@/data/protocols/http";
-import { NotFoundError, UnexpectedError } from "@/domain/errors";
+import {
+  BadRequestError,
+  NotFoundError,
+  UnexpectedError,
+} from "@/domain/errors";
 
 type SutTypes = {
   sut: AiServiceImpl;
@@ -36,6 +40,18 @@ describe("AiServiceImpl", () => {
       expect(httpClientSpy.url).toBe(makeUrlWithPromp(promptMock));
       expect(httpClientSpy.method).toBe("get");
       expect(result).toBe(mockGenerateResponse.response);
+    });
+
+    test("Should throw BadRequestError if returns status code 400", async () => {
+      const { sut, httpClientSpy } = makeSut();
+      httpClientSpy.response = {
+        statusCode: HttpStatusCode.badRequest,
+        body: {},
+      };
+
+      await expect(sut.generateResponse(promptMock)).rejects.toThrow(
+        new BadRequestError(),
+      );
     });
 
     test("Should throw NotFoundError if returns status code 404", async () => {
