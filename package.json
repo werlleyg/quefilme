@@ -13,6 +13,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@svgr/webpack": "^8.1.0",
     "axios": "^1.7.2",
     "fs": "^0.0.1-security",
     "g4f": "^1.4.6",
@@ -25,7 +26,8 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20",
