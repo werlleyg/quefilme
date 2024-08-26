@@ -1,5 +1,5 @@
 import { Input, Label } from "./styles";
-import SeatchIcon from "../../../../../public/assets/icons/search.svg";
+import SearchIcon from "../../../../../public/assets/icons/search.svg";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 export interface ISearchInput {
@@ -31,7 +31,7 @@ function SearchInput({
 
   return (
     <Label secondaryColor={secondaryColor}>
-      <SeatchIcon />
+      <SearchIcon />
       <Input
         type="search"
         placeholder={placeholder}
