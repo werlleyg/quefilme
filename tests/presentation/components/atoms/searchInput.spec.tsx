@@ -35,9 +35,7 @@ describe("Search Input Component", () => {
       debounce: 2,
     };
 
-    const { getByPlaceholderText, getByTestId } = render(
-      <SearchInput {...defaultProps} />,
-    );
+    const { getByPlaceholderText } = render(<SearchInput {...defaultProps} />);
 
     const input = getByPlaceholderText(defaultProps.placeholder!);
 
@@ -56,5 +54,22 @@ describe("Search Input Component", () => {
     });
 
     jest.useRealTimers();
+  });
+
+  test("Should be call onChange without debounce", async () => {
+    const defaultProps: ISearchInput = {
+      onChange: jest.fn(),
+      placeholder: "Placeholder test",
+    };
+
+    const { getByPlaceholderText } = render(<SearchInput {...defaultProps} />);
+
+    const input = getByPlaceholderText(defaultProps.placeholder!);
+
+    fireEvent.change(input, { target: { value: "test" } });
+
+    await waitFor(() => {
+      expect(defaultProps.onChange).toHaveBeenCalledWith("test");
+    });
   });
 });
