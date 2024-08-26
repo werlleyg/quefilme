@@ -26,10 +26,12 @@
   --background-color: var(--dark-color-750);
   --text-color: var(--white-color);
 
+  /* input  */
+  --input-text-color: var(--white-color);
+
   /* search input  */
   --search-input-background-color: var(--dark-color-900);
   --search-input-background-second-color: var(--dark-color-800);
-  --search-input-text-color: var(--white-color);
 
   /* settings  */
   --transition-time: 0.3s;

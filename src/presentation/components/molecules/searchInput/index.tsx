@@ -1,6 +1,7 @@
-import { Input, Label } from "./styles";
+import { Label } from "./styles";
 import SearchIcon from "../../../../../public/assets/icons/search.svg";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { Input } from "../../atoms";
 
 export interface ISearchInput {
   onChange: (e?: string) => void;
