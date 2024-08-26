@@ -24,8 +24,8 @@ function SearchInput({
   }, []);
 
   useEffect(() => {
-    const debouncId = setTimeout(() => onChange(value), debounce * 1000);
-    return () => clearTimeout(debouncId);
+    const debounceId = setTimeout(() => onChange(value), debounce * 1000);
+    return () => clearTimeout(debounceId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounce, value]);
 
