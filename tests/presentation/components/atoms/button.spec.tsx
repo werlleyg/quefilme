@@ -10,7 +10,7 @@ describe("Button Component", () => {
     expect(buttonElement).toBeInTheDocument();
   });
 
-  test("Shoul not render icon when not provided", () => {
+  test("Should not render icon when not provided", () => {
     const { queryByTestId } = render(<Button>Click Me</Button>);
     const iconElement = queryByTestId("icon-mock");
     expect(iconElement).not.toBeInTheDocument();
