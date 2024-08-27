@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { IButton, Button } from "@/presentation";
+import { Button } from "@/presentation";
 import React from "react";
 
 describe("Button Component", () => {
