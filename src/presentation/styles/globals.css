@@ -43,6 +43,10 @@
   --badge-background-color: var(--red-color);
   --badge-text-color: var(--white-color);
 
+  /* chip  */
+  --chip-background-color: var(--dark-color-800);
+  --chip-text-color: var(--white-color);
+
   /* settings  */
   --transition-time: 0.3s;
   --max-width: 32rem;
