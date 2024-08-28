@@ -3,7 +3,7 @@ import { IIconButton } from ".";
 
 type ICustomIconButton = IIconButton;
 
-const CustomIconButtom = styled.button<ICustomIconButton>`
+const CustomIconButton = styled.button<ICustomIconButton>`
   border-radius: 50%;
   padding: 1px;
   border: 0;
@@ -19,4 +19,4 @@ const CustomIconButtom = styled.button<ICustomIconButton>`
   }
 `;
 
-export { CustomIconButtom };
+export { CustomIconButton };

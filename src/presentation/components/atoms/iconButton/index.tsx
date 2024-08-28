@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
-import { CustomIconButtom } from "./styles";
+import { CustomIconButton } from "./styles";
 
 export interface IIconButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -7,7 +7,7 @@ export interface IIconButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 function IconButton(props: IIconButton) {
   const { children = "" } = props;
-  return <CustomIconButtom {...props}>{children}</CustomIconButtom>;
+  return <CustomIconButton {...props}>{children}</CustomIconButton>;
 }
 
 export { IconButton };
