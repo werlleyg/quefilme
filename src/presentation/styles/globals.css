@@ -47,6 +47,9 @@
   --chip-background-color: var(--dark-color-800);
   --chip-text-color: var(--white-color);
 
+  /* typography */
+  --h4-text-color: var(--white-color);
+
   /* settings  */
   --transition-time: 0.3s;
   --max-width: 32rem;
