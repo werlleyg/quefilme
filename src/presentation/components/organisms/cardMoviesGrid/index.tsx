@@ -1,0 +1,3 @@
+function CardMoviesGrid() {
+  return <div />;
+}
