@@ -1,6 +1,23 @@
+import {
+  Badge,
+  Button,
+  CardMoviesGrid,
+  Chip,
+  MovieCard,
+  SearchInput,
+} from "@/presentation";
 import Head from "next/head";
+import { useCallback, useState } from "react";
+import Puzzle from "../../public/assets/icons/puzzle-white.svg";
+import { MovieEntity } from "@/domain/entities";
 
 export default function Home() {
+  const [value, setValue] = useState<string>();
+
+  const handleChangeInput = useCallback((value?: string) => {
+    setValue(value);
+  }, []);
+
   return (
     <>
       <Head>
