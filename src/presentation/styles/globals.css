@@ -47,7 +47,11 @@
   --chip-background-color: var(--dark-color-800);
   --chip-text-color: var(--white-color);
 
+  /* modal  */
+  --modal-background-color: var(--dark-color-900);
+
   /* typography */
+  --h3-text-color: var(--white-color);
   --h4-text-color: var(--white-color);
 
   /* settings  */
