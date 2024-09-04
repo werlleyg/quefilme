@@ -15,7 +15,7 @@ const Label = styled.label<ILabel>`
   border-radius: 8px;
   background-color: ${({ secondaryColor }) =>
     secondaryColor
-      ? "var(--search-input-background-secondary-color)"
+      ? "var(--search-input-background-second-color)"
       : "var(--search-input-background-color)"};
 
   :focus-within {

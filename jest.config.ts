@@ -25,7 +25,7 @@ const config = {
   ],
   preset: "ts-jest",
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/tests/$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
 };
 

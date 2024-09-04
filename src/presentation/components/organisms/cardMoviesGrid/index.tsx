@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Container, Item } from "./styles";
 
 export interface ICardMovieGrid {
-  children: ReactNode[];
+  children?: ReactNode[];
 }
 
 function CardMoviesGrid({ children }: ICardMovieGrid) {
