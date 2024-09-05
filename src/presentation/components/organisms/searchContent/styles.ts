@@ -9,9 +9,6 @@ const Content = styled.form<IContent>`
   width: min(100%, var(--max-width));
   display: flex;
   flex-direction: column;
-  max-height: 100%;
-
-  overflow: scroll;
 
   ${({ isOpen }) =>
     isOpen &&

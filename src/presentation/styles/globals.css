@@ -53,6 +53,7 @@
   /* typography */
   --h3-text-color: var(--white-color);
   --h4-text-color: var(--white-color);
+  --paragraph-text-color: var(--white-color);
 
   /* settings  */
   --transition-time: 0.3s;
