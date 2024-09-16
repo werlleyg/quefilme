@@ -1,7 +1,7 @@
 import { ListMoviesEntity, MovieEntity } from "@/domain/entities";
 import { MoviesRepository } from "@/domain/repositories";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-import { Config } from "@/shared";
+import { Environment } from "@/main";
 import {
   AccessDeniedError,
   NotFoundError,
@@ -12,8 +12,8 @@ import { movieFromJson, moviesFromJsonList } from "@/helpers";
 export class MoviesRepositoryImpl implements MoviesRepository {
   constructor(private readonly httpClient: HttpClient) {}
 
-  private readonly url: string = Config.baseUrl;
-  private readonly accessKey: string = Config.accessKey;
+  private readonly url: string = Environment.baseUrl;
+  private readonly accessKey: string = Environment.accessKey;
 
   async getMovie(imdbID: string): Promise<MovieEntity> {
     let httpResponse = await this.httpClient.request({

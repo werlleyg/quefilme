@@ -1,9 +1,9 @@
 import { UnexpectedError } from "@/domain/errors";
 import { MoviesRepository } from "@/domain/repositories";
 import { AiService } from "@/domain/services";
-import { getMovieSuggestionUsecase } from "@/domain/usecases";
+import { GetMovieSuggestionUsecase } from "@/domain/usecases";
 
-export class GetMovieSuggestionImpl implements getMovieSuggestionUsecase {
+export class GetMovieSuggestionImpl implements GetMovieSuggestionUsecase {
   constructor(
     private readonly repository: MoviesRepository,
     private readonly service: AiService,
