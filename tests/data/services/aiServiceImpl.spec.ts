@@ -1,6 +1,6 @@
 import { AiServiceImpl } from "@/data/services";
 import { HttpClientSpy, mockGenerateResponse } from "../mocks";
-import { Config } from "@/shared";
+import { Environment } from "@/main/config";
 import { HttpStatusCode } from "@/data/protocols/http";
 import {
   BadRequestError,
@@ -15,7 +15,7 @@ type SutTypes = {
 
 const makeSut = (): SutTypes => {
   const httpClientSpy = new HttpClientSpy();
-  const sut = new AiServiceImpl(httpClientSpy, Config.baseUrlAi);
+  const sut = new AiServiceImpl(httpClientSpy, Environment.baseUrlAi);
 
   return { sut, httpClientSpy };
 };
@@ -24,7 +24,7 @@ const promptMock =
   "Seja direto e siga exatamente o modelo propost, me indique um filme baseado na lista Um amor para recordar, PS Eu te amo, Ponte para terabitia e coloque seu imdb no final, ex: Vingadores ultimato - 255fd";
 
 const makeUrlWithPromp = (prompt?: string) =>
-  `${Config.baseUrlAi}?prompt=${prompt}`;
+  `${Environment.baseUrlAi}?prompt=${prompt}`;
 
 describe("AiServiceImpl", () => {
   describe("generateResponse", () => {

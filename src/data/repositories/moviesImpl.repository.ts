@@ -1,7 +1,7 @@
 import { ListMoviesEntity, MovieEntity } from "@/domain/entities";
 import { MoviesRepository } from "@/domain/repositories";
 import { HttpClient, HttpStatusCode } from "../protocols/http";
-import { Environment } from "@/main";
+import { Environment } from "@/main/config";
 import {
   AccessDeniedError,
   NotFoundError,
