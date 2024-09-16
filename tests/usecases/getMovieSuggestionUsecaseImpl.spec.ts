@@ -1,6 +1,6 @@
 import { MoviesRepositoryImpl } from "@/data/repositories";
 import { AiServiceImpl } from "@/data/services";
-import { GetMovieSuggestionImpl } from "@/usecases/getMovieSuggestion.usecase";
+import { GetMovieSuggestionUsecaseImpl } from "@/usecases/getMovieSuggestion.usecase";
 import { mock } from "jest-mock-extended";
 import {
   listMoviesMock,
@@ -13,13 +13,13 @@ import { UnexpectedError } from "@/domain/errors";
 type SutTypes = {
   repository: ReturnType<typeof mock<MoviesRepositoryImpl>>;
   service: ReturnType<typeof mock<AiServiceImpl>>;
-  sut: GetMovieSuggestionImpl;
+  sut: GetMovieSuggestionUsecaseImpl;
 };
 
 const makeSut = (): SutTypes => {
   const repository = mock<MoviesRepositoryImpl>();
   const service = mock<AiServiceImpl>();
-  const sut = new GetMovieSuggestionImpl(repository, service);
+  const sut = new GetMovieSuggestionUsecaseImpl(repository, service);
 
   return { sut, repository, service };
 };
@@ -34,7 +34,7 @@ describe("getMovieSuggestionImpl", () => {
   it("Should be instantiated correctly", () => {
     const { sut } = makeSut();
 
-    expect(sut).toBeInstanceOf(GetMovieSuggestionImpl);
+    expect(sut).toBeInstanceOf(GetMovieSuggestionUsecaseImpl);
   });
 
   it("Should call generateResponse and getMovie with the correct movies and imdbID", async () => {

@@ -1,16 +1,18 @@
 import { UnexpectedError } from "@/domain/errors";
 import { MoviesRepository } from "@/domain/repositories";
 import { AiService } from "@/domain/services";
-import { getMovieSuggestionUsecase } from "@/domain/usecases";
+import { GetMovieSuggestionUsecase } from "@/domain/usecases";
 
-export class GetMovieSuggestionImpl implements getMovieSuggestionUsecase {
+export class GetMovieSuggestionUsecaseImpl
+  implements GetMovieSuggestionUsecase
+{
   constructor(
     private readonly repository: MoviesRepository,
     private readonly service: AiService,
   ) {}
   async exec(
-    params: getMovieSuggestionUsecase.Params,
-  ): Promise<getMovieSuggestionUsecase.Model> {
+    params: GetMovieSuggestionUsecase.Params,
+  ): Promise<GetMovieSuggestionUsecase.Model> {
     const listOfMovies = params.movies.map((movie) => movie.title).join(", ");
 
     const prompt = `Seja direto e siga exatamente o modelo propost, me indique um filme baseado na lista ${listOfMovies} e coloque seu imdb CORRETO no final, ex: Cidade de Deus - tt0317248`;

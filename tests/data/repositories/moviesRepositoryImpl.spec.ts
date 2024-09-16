@@ -5,7 +5,7 @@ import {
   mockGetMoviesRepositoryImpl,
 } from "../mocks";
 import { HttpStatusCode } from "@/data/protocols/http";
-import { Config } from "@/shared";
+import { Environment } from "@/main/config";
 import {
   AccessDeniedError,
   NotFoundError,
@@ -26,9 +26,9 @@ const makeSut = (): SutTypes => {
 };
 
 const makeUrlWithImdbID = (imdbID: string) =>
-  `${Config.baseUrl}?i=${imdbID}&apikey=${Config.accessKey}`;
+  `${Environment.baseUrl}?i=${imdbID}&apikey=${Environment.accessKey}`;
 const makeUrlWithTitle = (title?: string) =>
-  `${Config.baseUrl}?s=${title}&apikey=${Config.accessKey}`;
+  `${Environment.baseUrl}?s=${title}&apikey=${Environment.accessKey}`;
 
 const searchTitle = "Guardians of the Galaxy Vol. 2";
 

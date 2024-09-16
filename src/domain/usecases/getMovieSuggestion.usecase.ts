@@ -1,12 +1,12 @@
 import { ListMoviesEntity, MovieEntity } from "../entities";
 
-export interface getMovieSuggestionUsecase {
+export interface GetMovieSuggestionUsecase {
   exec: (
-    params: getMovieSuggestionUsecase.Params,
-  ) => Promise<getMovieSuggestionUsecase.Model>;
+    params: GetMovieSuggestionUsecase.Params,
+  ) => Promise<GetMovieSuggestionUsecase.Model>;
 }
 
-export namespace getMovieSuggestionUsecase {
+export namespace GetMovieSuggestionUsecase {
   export type Params = ListMoviesEntity;
   export type Model = MovieEntity;
 }
