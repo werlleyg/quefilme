@@ -23,7 +23,8 @@
       "@/domain/*": ["./src/domain/*"],
       "@/data/*": ["./src/data/*"],
       "@/infrastructure/*": ["./src/infrastructure/*"],
-      "@/tests/*": ["./tests/*"]
+      "@/tests/*": ["./tests/*"],
+      "@/main/*": ["./src/main/*"]
     },
     "forceConsistentCasingInFileNames": true,
     "types": ["jest"]
