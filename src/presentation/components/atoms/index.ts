@@ -5,3 +5,4 @@ export * from "./iconButton";
 export * from "./image";
 export * from "./fullScreenModal";
 export * from "./brand";
+export * from "./loader";
