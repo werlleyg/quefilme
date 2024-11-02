@@ -6,7 +6,7 @@ export type IBrand = HTMLAttributes<HTMLDivElement>;
 
 function Brand(props: IBrand) {
   return (
-    <Div {...props}>
+    <Div {...props} role="img" aria-label="Logo da marca">
       <BrandIcon />
     </Div>
   );
