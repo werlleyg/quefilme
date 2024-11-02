@@ -4,7 +4,7 @@ import { Container } from "./styles";
 
 function LoadingContent() {
   return (
-    <Container>
+    <Container data-testid="loading-container">
       <Loader />
       <P
         style={{
