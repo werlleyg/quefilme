@@ -1,3 +1,4 @@
+import { P } from "@/presentation/typography";
 import styled from "@emotion/styled";
 
 const Container = styled.div`
@@ -6,7 +7,7 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  animation: fade-in-animation var(--transition-time);
+  animation: fade-in-animation var(--transition-time, 300ms);
   background: linear-gradient(
       336deg,
       rgba(var(--loading-content-background-color), 1),
@@ -27,7 +28,13 @@ const Container = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  z-index: 1001;
+  z-index: var(--z-index-loading, 1001);
 `;
 
-export { Container };
+const PMessage = styled(P)`
+  width: min(100% - 1rem, 350px);
+  text-align: center;
+  font-weight: 200;
+`;
+
+export { Container, PMessage };
