@@ -4,4 +4,5 @@ export const Environment = {
   baseUrlAi:
     process.env.NEXT_PUBLIC_BASE_URL_AI ?? "http://127.0.0.1:3000/api/chat",
   debounceTime: process.env.DEBOUNCE_TIME ?? 1,
+  debounceTime: Number(process.env.DEBOUNCE_TIME) ?? 1,
 };
