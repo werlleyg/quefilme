@@ -29,7 +29,9 @@ describe("getMoviesUsecaseImpl", () => {
 
     await sut.exec(titleMock);
 
-    expect(movieRepository.getMovieList).toHaveBeenCalledWith(titleMock);
+    expect(movieRepository.getMovieList).toHaveBeenCalledWith(
+      titleMock.trim().toLowerCase(),
+    );
   });
 
   it("Should return the correct movies when repository returns a list movies", async () => {
