@@ -5,6 +5,6 @@ export class GetMoviesUsecaseImpl implements GetMoviesUsecase {
   constructor(private readonly repository: MoviesRepository) {}
 
   async exec(title: GetMoviesUsecase.Params): Promise<GetMoviesUsecase.Model> {
-    return await this.repository.getMovieList(title);
+    return await this.repository.getMovieList(title.trim().toLowerCase());
   }
 }

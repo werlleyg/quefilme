@@ -4,10 +4,11 @@ import { Container } from "./styles";
 export interface IFullScreenModal {
   isOpen: boolean;
   children: ReactNode;
+  type?: "primary" | "dark";
 }
 
 function FullScreenModal(props: IFullScreenModal) {
-  const { children, isOpen } = props;
+  const { children, isOpen, type = "dark" } = props;
 
   const disableScroll = () => {
     const scrollBarWidth =
@@ -40,7 +41,11 @@ function FullScreenModal(props: IFullScreenModal) {
     return () => enableScroll();
   }, [isOpen]);
 
-  return <Container {...props}>{children}</Container>;
+  return (
+    <Container {...props} type={type}>
+      {children}
+    </Container>
+  );
 }
 
 export { FullScreenModal };
