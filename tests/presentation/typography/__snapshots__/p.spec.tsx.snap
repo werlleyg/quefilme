@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`P Typography Component Should match the snapshot 1`] = `
+<DocumentFragment>
+  <p
+    class="snapshot-test css-1watjdo"
+  >
+    Snapshot Content
+  </p>
+</DocumentFragment>
+`;
