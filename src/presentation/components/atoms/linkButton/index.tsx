@@ -5,8 +5,8 @@ export interface ILinkButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-function LinkButton(props: ILinkButton) {
-  return <Container {...props}>{props.children}</Container>;
+function LinkButton({ children, ...props }: ILinkButton) {
+  return <Container {...props}>{children}</Container>;
 }
 
 export { LinkButton };
