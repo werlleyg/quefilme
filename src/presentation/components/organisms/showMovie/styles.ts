@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 
 const Container = styled.div`
-  width: min(100% - 40px, 100%);
+  width: min(100% - 40px, var(--max-width));
   margin-inline: auto;
   margin-top: 50px;
   margin-bottom: 36px;
