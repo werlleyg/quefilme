@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { FormEvent, useCallback, useRef } from "react";
 import { Content } from "./styles";
 import { ListMoviesEntity, MovieEntity } from "@/domain/entities";
 import {
@@ -7,6 +7,7 @@ import {
   MovieCard,
   SearchInput,
   FullScreenModal,
+  P,
 } from "@/presentation";
 
 export interface ISearchContent {
@@ -24,9 +25,13 @@ function SearchContent({
 }: ISearchContent) {
   const formRef = useRef<HTMLFormElement>(null);
 
+  const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }, []);
+
   return (
     <FullScreenModal isOpen={!!value}>
-      <Content ref={formRef} isOpen={!!value}>
+      <Content ref={formRef} isOpen={!!value} onSubmit={handleSubmit}>
         <SearchInput
           onChange={handleChangeInput}
           placeholder={"Digite o filme que você gosta ..."}
@@ -49,6 +54,13 @@ function SearchContent({
                 />
               ))}
             </CardMoviesGrid>
+            {movies?.movies?.length === 0 && (
+              <P style={{ fontWeight: 200, textAlign: "center" }}>
+                Sinto muito, parece que náo conseguimos encontrar nenhum título
+                com este nome. Sugiro que efetue outra busca e lembre-se de
+                utilizar o título original da obra.
+              </P>
+            )}
           </>
         )}
       </Content>
