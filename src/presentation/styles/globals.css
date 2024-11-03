@@ -5,6 +5,7 @@
   --white-color: #ffffff;
   --black-color: #000000;
   --red-color: #c43b3b;
+  --red-light-color: #eb0105;
 
   --dark-color-750: #2c2c2c;
   --dark-color-800: #262626;
@@ -40,7 +41,7 @@
   --button-text-second-color: var(--red-color);
 
   /* badge  */
-  --badge-background-color: var(--red-color);
+  --badge-background-color: var(--red-light-color);
   --badge-text-color: var(--white-color);
 
   /* chip  */
@@ -49,6 +50,7 @@
 
   /* modal  */
   --modal-background-color: var(--dark-color-900);
+  --modal-background-primary-color: var(--red-color);
 
   /* typography */
   --h3-text-color: var(--white-color);
@@ -57,6 +59,9 @@
 
   /* loading content  */
   --loading-content-background-color: var(--black-color-rgb);
+
+  /* link button  */
+  --link-button-color: var(--white-color);
 
   /* settings  */
   --transition-time: 0.3s;
