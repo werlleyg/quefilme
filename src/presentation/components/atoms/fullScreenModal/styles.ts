@@ -2,7 +2,7 @@ import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { IFullScreenModal } from ".";
 
-type IContainer = Pick<IFullScreenModal, "isOpen">;
+type IContainer = Pick<IFullScreenModal, "isOpen" | "type">;
 
 const Container = styled.div<IContainer>`
   display: flex;
@@ -10,12 +10,12 @@ const Container = styled.div<IContainer>`
   justify-content: center;
   align-items: flex-start;
 
-  ${({ isOpen }) =>
+  ${({ isOpen, type }) =>
     isOpen &&
     css`
-      position: fixed;
+      position: absolute;
       height: 100vh;
-      background-color: var(--modal-background-color);
+      background-color: ${modalBgColor.get(type!)};
       z-index: 1000;
       top: 0;
       left: 0;
@@ -28,3 +28,8 @@ const Container = styled.div<IContainer>`
 `;
 
 export { Container };
+
+const modalBgColor = new Map<string, string>([
+  ["dark", "var(--modal-background-color)"],
+  ["primary", "var(--modal-background-primary-color)"],
+]);
