@@ -15,7 +15,7 @@ export class GetMovieSuggestionUsecaseImpl
   ): Promise<GetMovieSuggestionUsecase.Model> {
     const listOfMovies = params.movies.map((movie) => movie.title).join(", ");
 
-    const prompt = `Seja direto e siga exatamente o exemplo proposto a seguir após os dois pontos, me indique apenas um filme baseado na lista ${listOfMovies}, mas não pode ser nenhum dessa lista, e coloque seu imdb CORRETO no final, ex: Cidade de Deus - tt0317248`;
+    const prompt = `Seja direto e siga exatamente o exemplo proposto a seguir após os dois pontos, me indique apenas um filme baseado na lista ${listOfMovies}, mas não pode ser nenhum dessa lista e nem repetir a sugestão anterior, seja criativo na escolha mas retorne algo que combine com os itens de lista, e coloque seu imdb CORRETO no final, ex: Cidade de Deus - tt0317248`;
 
     const promptResponse = await this.service.generateResponse(prompt);
 
