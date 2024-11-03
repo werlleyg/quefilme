@@ -1,4 +1,5 @@
 import { ChatGPTAiClient } from "@/infrastructure/ai/chatGPTAiClient.infra";
+import { makeChatGptAiClient } from "@/main/factories/ai/chatGPTAiClient.factory";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -21,8 +22,7 @@ export default async function handler(
     return res.status(400).json({ error: "Put a valid prompt" });
   }
 
-  const aiClient = new ChatGPTAiClient();
-  const response = await aiClient.chat(prompt as string);
+  const response = await makeChatGptAiClient().chat(prompt as string);
   res.status(200).json({ response: decodeURI(response) });
   return;
 }
