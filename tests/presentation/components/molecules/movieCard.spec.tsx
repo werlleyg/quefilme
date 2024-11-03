@@ -6,8 +6,8 @@ import React from "react";
 describe("MovieCard Component", () => {
   const mockProps = {
     title: "Inception",
-    runtime: "148 min",
-    type: "Movie",
+    runtime: "2018",
+    type: "movie",
     image: "/path/to/image.jpg",
     onClick: jest.fn(),
   };
@@ -16,7 +16,7 @@ describe("MovieCard Component", () => {
     const { getByRole, getByText } = render(<MovieCard {...mockProps} />);
     expect(getByRole("img", { name: mockProps.title })).toBeInTheDocument();
     expect(getByText(mockProps.title)).toBeInTheDocument();
-    expect(getByText(mockProps.runtime)).toBeInTheDocument();
+    expect(getByText(`Ano ${mockProps.runtime}`)).toBeInTheDocument();
     expect(getByText("Filme")).toBeInTheDocument();
   });
 
@@ -27,7 +27,7 @@ describe("MovieCard Component", () => {
 
   it("Should display the correct runtime", () => {
     const { getByText } = render(<MovieCard {...mockProps} />);
-    expect(getByText("148 min")).toBeInTheDocument();
+    expect(getByText("Ano 2018")).toBeInTheDocument();
   });
 
   it("Should display the correct type based on the type prop", () => {
