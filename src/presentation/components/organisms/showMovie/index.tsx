@@ -14,7 +14,12 @@ export interface IShowMovie {
 function ShowMovie({ movie, onChangeAnotherMovie, goBack }: IShowMovie) {
   return (
     movie && (
-      <FullScreenModal isOpen type="primary">
+      <FullScreenModal
+        isOpen
+        type="primary"
+        aria-labelledby="movie-modal-title"
+        aria-describedby="movie-modal-desc"
+      >
         <Container>
           <Brand />
           <PMessage>

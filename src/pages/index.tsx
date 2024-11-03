@@ -37,23 +37,31 @@ export function Home() {
   }, []);
 
   const handleOnSelectMovie = useCallback((movie: MovieEntity) => {
-    setSelectedMovies((prev) => [...prev, movie]);
+    setSelectedMovies((prev) => {
+      if (!prev.some((prevMovie) => prevMovie.imdbID === movie.imdbID)) {
+        return [...prev, movie];
+      }
+      return prev;
+    });
     setValue("");
     setSearchValue("");
   }, []);
 
   const handleWithRemoveMovie = useCallback((movie: MovieEntity) => {
     setSelectedMovies((prev) => {
-      return prev.filter((prevMovie) => prevMovie !== movie);
+      return prev.filter((prevMovie) => prevMovie.imdbID !== movie.imdbID);
     });
   }, []);
 
   const handleWithSearchMovie = useCallback(async (searchData?: string) => {
     if (!searchData) return setLoading(false);
 
-    const result = await makeGetMoviesUsecase().exec(searchData);
-    setSearchMovies(result);
-    setLoading(false);
+    try {
+      const result = await makeGetMoviesUsecase().exec(searchData);
+      setSearchMovies(result);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const handleGetSuggestMovie = useCallback(async () => {
