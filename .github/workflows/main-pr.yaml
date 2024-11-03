@@ -1,5 +1,4 @@
 name: Main PR Check
-env:
 
 on:
   pull_request:

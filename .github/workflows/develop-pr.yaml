@@ -1,6 +1,4 @@
 name: Develop PR Check
-env:
-
 on:
   pull_request:
     branches: develop
