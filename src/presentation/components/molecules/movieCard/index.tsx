@@ -1,4 +1,4 @@
-import { H4 } from "@/presentation/typography";
+import { H3, H4 } from "@/presentation/typography";
 import { Badge, Image } from "../../atoms";
 import { CustomCard } from "./styles";
 
@@ -8,16 +8,24 @@ export interface IMovieCard {
   type: string;
   image: string;
   onClick: (e: unknown) => void;
+  align?: "left" | "center";
 }
 
-function MovieCard({ image, runtime, title, type, onClick }: IMovieCard) {
+function MovieCard({
+  image,
+  runtime,
+  title,
+  type,
+  onClick,
+  align = "left",
+}: IMovieCard) {
   const _typeCard: Record<string, string> = {
-    Movie: "Filme",
-    Series: "Série",
+    movie: "Filme",
+    series: "Série",
   };
 
   return (
-    <CustomCard onClick={onClick}>
+    <CustomCard onClick={onClick} align={align}>
       <Image
         aria-label={title}
         src={image}
@@ -29,8 +37,8 @@ function MovieCard({ image, runtime, title, type, onClick }: IMovieCard) {
           borderRadius: "4px",
         }}
       />
-      <H4>{title}</H4>
-      <H4>{runtime}</H4>
+      <H3>{title}</H3>
+      <H4>Ano {runtime}</H4>
       <Badge>{_typeCard[type] ?? "-"}</Badge>
     </CustomCard>
   );
