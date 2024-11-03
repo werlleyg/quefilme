@@ -24,8 +24,8 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Start Next.js server in the background
-        run: npm test
+      - name: Start unit tests
+        run: npm run test
 
   compare_versions:
     runs-on: ubuntu-latest

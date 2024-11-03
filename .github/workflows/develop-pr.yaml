@@ -22,5 +22,5 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Start Next.js server in the background
-        run: yarn test
+      - name: Start unit tests
+        run: npm run test
