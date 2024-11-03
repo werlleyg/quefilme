@@ -9,7 +9,7 @@ export function movieFromJson(data: any): MovieEntityType {
     actors: data?.Actors,
     description: data?.Plot,
     genre: data?.Genre,
-    runtime: data?.Runtime,
+    runtime: data?.Year,
   };
 }
 
@@ -24,6 +24,6 @@ export function moviesFromJsonList(dataList: any[]): MovieEntityType[] {
     actors: data?.Actors,
     description: data?.Plot,
     genre: data?.Genre,
-    runtime: data?.Runtime,
+    runtime: data?.Year,
   }));
 }
