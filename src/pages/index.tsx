@@ -1,17 +1,11 @@
 import {
-  Badge,
   Brand,
   Button,
-  CardMoviesGrid,
   Chip,
-  FullScreenModal,
   H3,
-  Loader,
   LoadingContent,
-  MovieCard,
   P,
   SearchContent,
-  SearchInput,
   ShowMovie,
 } from "@/presentation";
 import Head from "next/head";
@@ -30,7 +24,7 @@ import { makeGetMoviesUsecase } from "@/main/factories/usecases/getMovies.factor
 import { Environment } from "@/main/config";
 import { makeGetMovieSuggestionUsecase } from "@/main/factories/usecases/getMovieSuggestion.factory";
 
-export default function Home() {
+export function Home() {
   const [value, setValue] = useState<string>();
   const [searchValue, setSearchValue] = useState<string>();
   const [selectedMovies, setSelectedMovies] = useState<MovieEntity[]>([]);
@@ -163,3 +157,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;
