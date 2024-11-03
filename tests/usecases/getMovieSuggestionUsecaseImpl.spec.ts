@@ -27,7 +27,7 @@ const makeSut = (): SutTypes => {
 const makePrompt = (listMovies: ListMoviesEntity) => {
   const listOfMovies = listMovies.movies.map((movie) => movie.title).join(", ");
 
-  return `Seja direto e siga exatamente o modelo propost, me indique um filme baseado na lista ${listOfMovies} e coloque seu imdb CORRETO no final, ex: Cidade de Deus - tt0317248`;
+  return `Seja direto e siga exatamente o exemplo proposto a seguir após os dois pontos, me indique apenas um filme baseado na lista ${listOfMovies}, mas não pode ser nenhum dessa lista, e coloque seu imdb CORRETO no final, ex: Cidade de Deus - tt0317248`;
 };
 
 describe("getMovieSuggestionImpl", () => {
