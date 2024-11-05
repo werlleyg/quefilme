@@ -1,13 +1,13 @@
 import { ListMoviesEntity, MovieEntity } from "@/domain/entities";
 import { MoviesRepository } from "@/domain/repositories";
-import { HttpClient, HttpStatusCode } from "../protocols/http";
+import { HttpClient, HttpStatusCode } from "../../domain/protocols/http";
 import { Environment } from "@/main/config";
 import {
   AccessDeniedError,
   NotFoundError,
   UnexpectedError,
 } from "@/domain/errors";
-import { movieFromJson, moviesFromJsonList } from "@/helpers";
+import { movieFromJson, moviesFromJsonList } from "@/infrastructure/helpers";
 
 export class MoviesRepositoryImpl implements MoviesRepository {
   constructor(private readonly httpClient: HttpClient) {}

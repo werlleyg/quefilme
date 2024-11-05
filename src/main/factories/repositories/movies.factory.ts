@@ -1,4 +1,4 @@
-import { MoviesRepositoryImpl } from "@/data/repositories";
+import { MoviesRepositoryImpl } from "@/infrastructure/repositories";
 import { MoviesRepository } from "@/domain/repositories";
 import { makeAxiosHttpClient } from "../http/axiosHttpClient.factory";
 

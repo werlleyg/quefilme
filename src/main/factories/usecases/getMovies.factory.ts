@@ -1,6 +1,6 @@
 import { GetMoviesUsecase } from "@/domain/usecases";
-import { GetMoviesUsecaseImpl } from "@/usecases";
 import { makeMoviesRepository } from "../repositories/movies.factory";
+import { GetMoviesUsecaseImpl } from "@/infrastructure/usecases";
 
 export const makeGetMoviesUsecase = (): GetMoviesUsecase =>
   new GetMoviesUsecaseImpl(makeMoviesRepository());
