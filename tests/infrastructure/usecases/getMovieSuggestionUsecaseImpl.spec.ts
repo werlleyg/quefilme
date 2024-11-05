@@ -1,14 +1,15 @@
-import { MoviesRepositoryImpl } from "@/data/repositories";
-import { AiServiceImpl } from "@/data/services";
-import { GetMovieSuggestionUsecaseImpl } from "@/usecases/getMovieSuggestion.usecase";
+import { MoviesRepositoryImpl } from "@/infrastructure/repositories";
+
 import { mock } from "jest-mock-extended";
 import {
   listMoviesMock,
   mockGenerateResponse,
   movieMock,
-} from "./mocks/getMovieSuggestionUsecaseImpl.mock";
+} from "../mocks/getMovieSuggestionUsecaseImpl.mock";
 import { ListMoviesEntity } from "@/domain/entities";
 import { UnexpectedError } from "@/domain/errors";
+import { AiServiceImpl } from "@/infrastructure/services";
+import { GetMovieSuggestionUsecaseImpl } from "@/infrastructure/usecases/getMovieSuggestion.usecase";
 
 type SutTypes = {
   repository: ReturnType<typeof mock<MoviesRepositoryImpl>>;

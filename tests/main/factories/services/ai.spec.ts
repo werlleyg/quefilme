@@ -1,6 +1,6 @@
-import { AiServiceImpl } from "@/data/services";
 import { AiService } from "@/domain/services";
 import { AxiosHttpClient } from "@/infrastructure/http";
+import { AiServiceImpl } from "@/infrastructure/services";
 import { Environment } from "@/main/config";
 
 type SutTypes = {
