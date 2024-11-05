@@ -1,12 +1,12 @@
-import { AiServiceImpl } from "@/data/services";
 import { HttpClientSpy, mockGenerateResponse } from "../mocks";
 import { Environment } from "@/main/config";
-import { HttpStatusCode } from "@/data/protocols/http";
+import { HttpStatusCode } from "@/domain/protocols/http";
 import {
   BadRequestError,
   NotFoundError,
   UnexpectedError,
 } from "@/domain/errors";
+import { AiServiceImpl } from "@/infrastructure/services";
 
 type SutTypes = {
   sut: AiServiceImpl;

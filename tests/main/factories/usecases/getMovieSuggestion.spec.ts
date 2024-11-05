@@ -1,11 +1,12 @@
-import { MoviesRepositoryImpl } from "@/data/repositories";
-import { AiServiceImpl } from "@/data/services";
+import { MoviesRepositoryImpl } from "@/infrastructure/repositories";
+
 import { MoviesRepository } from "@/domain/repositories";
 import { AiService } from "@/domain/services";
 import { GetMovieSuggestionUsecase, GetMoviesUsecase } from "@/domain/usecases";
 import { AxiosHttpClient } from "@/infrastructure/http";
 import { Environment } from "@/main/config";
-import { GetMovieSuggestionUsecaseImpl } from "@/usecases/getMovieSuggestion.usecase";
+import { AiServiceImpl } from "@/infrastructure/services";
+import { GetMovieSuggestionUsecaseImpl } from "@/infrastructure/usecases/getMovieSuggestion.usecase";
 
 type SutTypes = {
   axiosHttpClient: AxiosHttpClient;
