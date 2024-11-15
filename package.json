@@ -1,6 +1,6 @@
 {
   "name": "quefilme",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -23,7 +23,8 @@
     "jest-mock-extended": "^3.0.7",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-toastify": "^10.0.6"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",

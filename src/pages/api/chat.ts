@@ -1,4 +1,3 @@
-import { ChatGPTAiClient } from "@/infrastructure/ai/chatGPTAiClient.infra";
 import { makeChatGptAiClient } from "@/main/factories/ai/chatGPTAiClient.factory";
 import { NextApiRequest, NextApiResponse } from "next";
 

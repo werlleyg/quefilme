@@ -23,6 +23,9 @@ import {
 import { makeGetMoviesUsecase } from "@/main/factories/usecases/getMovies.factory";
 import { Environment } from "@/main/config";
 import { makeGetMovieSuggestionUsecase } from "@/main/factories/usecases/getMovieSuggestion.factory";
+import { toast } from "react-toastify";
+import { snackbarMessage } from "@/domain/enums/snackbar.enum";
+import Link from "next/link";
 
 export function Home() {
   const [value, setValue] = useState<string>();
@@ -67,10 +70,15 @@ export function Home() {
   const handleGetSuggestMovie = useCallback(async () => {
     setLoading(true);
     const listMovies = new ListMoviesEntity({ movies: selectedMovies });
-    const result = await makeGetMovieSuggestionUsecase()
-      .exec(listMovies)
-      .finally(() => setLoading(false));
-    setSuggestedMovie(new MovieEntity(result));
+
+    try {
+      const result = await makeGetMovieSuggestionUsecase().exec(listMovies);
+      setSuggestedMovie(new MovieEntity(result));
+    } catch (e) {
+      toast.error(snackbarMessage.SUGGEST_MOVIE_ERROR);
+    } finally {
+      setLoading(false);
+    }
   }, [selectedMovies]);
 
   const handleWithGoBack = useCallback(() => {
@@ -152,7 +160,14 @@ export function Home() {
         </DivTopContent>
         <DivBottomContent>
           <P style={{ fontWeight: 500, textAlign: "center" }}>
-            Desenvolvido por <u>Werlley Ponte</u>
+            Desenvolvido por{" "}
+            <Link
+              href="https://www.linkedin.com/in/werlleyg"
+              target="_blank"
+              style={{ fontWeight: 700 }}
+            >
+              Werlley Ponte
+            </Link>
           </P>
         </DivBottomContent>
         <ShowMovie

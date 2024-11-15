@@ -4,7 +4,7 @@ import {
   NotFoundError,
   UnexpectedError,
 } from "@/domain/errors";
-import { HttpClient, HttpStatusCode } from "../protocols/http";
+import { HttpClient, HttpStatusCode } from "../../domain/protocols/http";
 import { AiService } from "./../../domain/services/ai.service";
 
 export class AiServiceImpl implements AiService {

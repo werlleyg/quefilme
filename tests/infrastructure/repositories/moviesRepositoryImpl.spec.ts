@@ -1,10 +1,10 @@
-import { MoviesRepositoryImpl } from "@/data/repositories/moviesImpl.repository";
+import { MoviesRepositoryImpl } from "@/infrastructure/repositories/moviesImpl.repository";
 import {
   HttpClientSpy,
   mockGetMovieRepositoryImpl,
   mockGetMoviesRepositoryImpl,
 } from "../mocks";
-import { HttpStatusCode } from "@/data/protocols/http";
+import { HttpStatusCode } from "@/domain/protocols/http";
 import { Environment } from "@/main/config";
 import {
   AccessDeniedError,

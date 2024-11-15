@@ -1,4 +1,4 @@
-import { AiClient, AiPrompt, AiResponse } from "@/data/protocols/ai";
+import { AiClient, AiPrompt, AiResponse } from "@/domain/protocols/ai";
 import { chunkProcessor, G4F } from "g4f";
 
 export class ChatGPTAiClient implements AiClient {
