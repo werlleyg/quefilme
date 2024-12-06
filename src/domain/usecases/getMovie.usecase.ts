@@ -1,10 +1,10 @@
-import { MovieEntity } from "../entities";
+import { MoviesRepository } from "@/domain/repositories";
+import { GetMovieUsecase } from "@/domain/usecases/interfaces";
 
-export interface GetMovieUsecase {
-  exec: (params: GetMovieUsecase.Params) => Promise<GetMovieUsecase.Model>;
-}
+export class GetMovieUsecaseImpl implements GetMovieUsecase {
+  constructor(private readonly repository: MoviesRepository) {}
 
-export namespace GetMovieUsecase {
-  export type Params = string;
-  export type Model = MovieEntity;
+  async exec(imdbID: GetMovieUsecase.Params): Promise<GetMovieUsecase.Model> {
+    return await this.repository.getMovie(imdbID);
+  }
 }

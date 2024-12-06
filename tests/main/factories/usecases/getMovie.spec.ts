@@ -2,7 +2,7 @@ import { MoviesRepositoryImpl } from "@/infrastructure/repositories";
 import { MoviesRepository } from "@/domain/repositories";
 import { GetMovieUsecase } from "@/domain/usecases";
 import { AxiosHttpClient } from "@/infrastructure/http";
-import { GetMovieUsecaseImpl } from "@/infrastructure/usecases";
+import { GetMovieUsecaseImpl } from "@/domain/usecases";
 
 type SutTypes = {
   axiosHttpClient: AxiosHttpClient;

@@ -9,7 +9,7 @@ import {
 import { ListMoviesEntity } from "@/domain/entities";
 import { UnexpectedError } from "@/domain/errors";
 import { AiServiceImpl } from "@/infrastructure/services";
-import { GetMovieSuggestionUsecaseImpl } from "@/infrastructure/usecases/getMovieSuggestion.usecase";
+import { GetMovieSuggestionUsecaseImpl } from "@/domain/usecases/getMovieSuggestion.usecase";
 
 type SutTypes = {
   repository: ReturnType<typeof mock<MoviesRepositoryImpl>>;
