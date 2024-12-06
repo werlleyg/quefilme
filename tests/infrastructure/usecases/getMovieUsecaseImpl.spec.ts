@@ -2,7 +2,7 @@ import { MoviesRepositoryImpl } from "@/infrastructure/repositories";
 
 import { mock } from "jest-mock-extended";
 import { movieMock } from "../mocks/getMovieUsecaseImpl.mock";
-import { GetMovieUsecaseImpl } from "@/infrastructure/usecases";
+import { GetMovieUsecaseImpl } from "@/domain/usecases";
 
 type SutTypes = {
   movieRepository: ReturnType<typeof mock<MoviesRepositoryImpl>>;

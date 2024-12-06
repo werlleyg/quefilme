@@ -6,7 +6,7 @@ import { GetMovieSuggestionUsecase, GetMoviesUsecase } from "@/domain/usecases";
 import { AxiosHttpClient } from "@/infrastructure/http";
 import { Environment } from "@/main/config";
 import { AiServiceImpl } from "@/infrastructure/services";
-import { GetMovieSuggestionUsecaseImpl } from "@/infrastructure/usecases/getMovieSuggestion.usecase";
+import { GetMovieSuggestionUsecaseImpl } from "@/domain/usecases/getMovieSuggestion.usecase";
 
 type SutTypes = {
   axiosHttpClient: AxiosHttpClient;
