@@ -1,12 +1,30 @@
-import { ListMoviesEntity, MovieEntity } from "../entities";
+import { UnexpectedError } from "@/domain/errors";
+import { MoviesRepository } from "@/domain/repositories";
+import { AiService } from "@/domain/services";
+import { GetMovieSuggestionUsecase } from "@/domain/usecases/interfaces";
 
-export interface GetMovieSuggestionUsecase {
-  exec: (
+export class GetMovieSuggestionUsecaseImpl
+  implements GetMovieSuggestionUsecase
+{
+  constructor(
+    private readonly repository: MoviesRepository,
+    private readonly service: AiService,
+  ) {}
+  async exec(
     params: GetMovieSuggestionUsecase.Params,
-  ) => Promise<GetMovieSuggestionUsecase.Model>;
-}
+  ): Promise<GetMovieSuggestionUsecase.Model> {
+    const listOfMovies = params.movies.map((movie) => movie.title).join(", ");
 
-export namespace GetMovieSuggestionUsecase {
-  export type Params = ListMoviesEntity;
-  export type Model = MovieEntity;
+    const prompt = `Seja direto e siga exatamente o exemplo proposto a seguir após os dois pontos, me indique apenas um filme baseado na lista ${listOfMovies}, mas não pode ser nenhum dessa lista e nem repetir a sugestão anterior, seja criativo na escolha mas retorne algo que combine com os itens de lista, e coloque seu imdb CORRETO no final, ex: Cidade de Deus - tt0317248`;
+
+    const promptResponse = await this.service.generateResponse(prompt);
+
+    const parts = promptResponse?.split(" - ");
+    if (!parts || parts?.length < 2) {
+      throw new UnexpectedError();
+    }
+    const suggestMovieImdb = parts[1];
+
+    return await this.repository.getMovie(suggestMovieImdb);
+  }
 }

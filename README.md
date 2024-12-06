@@ -61,7 +61,7 @@ The project was built adapting clean arch concepts to the context of Next.js. It
 
 - **Domain:** Concentrates important information for business rules, such as entities, enums, errors, service, providers, protocols, and usecases contracts;
 
-- **Infrastructure:** The implementation of service contracts, proviers, protocols and usecases is carried out;
+- **Infrastructure:** The implementation of service contracts, proviers and protocols is carried out;
 
 - **Main:** In this layer, the factory pattern is carried out to instantiate the elements created in the infrastructure, in addition to aggregating project configurations such as environment variables and build settings;
 
