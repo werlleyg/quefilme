@@ -24,7 +24,7 @@ import { makeGetMoviesUsecase } from "@/main/factories/usecases/getMovies.factor
 import { Environment } from "@/main/config";
 import { makeGetMovieSuggestionUsecase } from "@/main/factories/usecases/getMovieSuggestion.factory";
 import { toast } from "react-toastify";
-import { snackbarMessage } from "@/domain/enums/snackbar.enum";
+import { snackbarMessageEnum } from "@/domain/enums/snackbar.enum";
 import Link from "next/link";
 
 export function Home() {
@@ -75,7 +75,7 @@ export function Home() {
       const result = await makeGetMovieSuggestionUsecase().exec(listMovies);
       setSuggestedMovie(new MovieEntity(result));
     } catch (e) {
-      toast.error(snackbarMessage.SUGGEST_MOVIE_ERROR);
+      toast.error(snackbarMessageEnum.SUGGEST_MOVIE_ERROR);
     } finally {
       setLoading(false);
     }
