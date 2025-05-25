@@ -62,6 +62,8 @@ export function Home() {
     try {
       const result = await makeGetMoviesUsecase().exec(searchData);
       setSearchMovies(result);
+    } catch (e) {
+      toast.error(snackbarMessageEnum.SEARCH_MOVIE_ERROR);
     } finally {
       setLoading(false);
     }

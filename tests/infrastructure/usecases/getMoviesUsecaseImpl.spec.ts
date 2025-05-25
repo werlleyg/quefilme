@@ -1,58 +1,46 @@
 import { MoviesRepositoryImpl } from "@/infrastructure/repositories";
-
 import { mock } from "jest-mock-extended";
-import { listMoviesMock, movieMock } from "../mocks/getMovieUsecaseImpl.mock";
+import { listMoviesMock } from "../mocks/getMovieUsecaseImpl.mock";
 import { GetMoviesUsecaseImpl } from "@/domain/usecases";
-import { TranslatorServiceImpl } from "@/infrastructure/services/translatorImpl.service";
-import { languagesEnum } from "@/domain/enums/languages.enum";
+import { ListMoviesEntity } from "@/domain/entities";
 
 type SutTypes = {
   movieRepository: ReturnType<typeof mock<MoviesRepositoryImpl>>;
-  translatorService: ReturnType<typeof mock<TranslatorServiceImpl>>;
   sut: GetMoviesUsecaseImpl;
 };
 
 const makeSut = (): SutTypes => {
   const movieRepository = mock<MoviesRepositoryImpl>();
-  const translatorService = mock<TranslatorServiceImpl>();
-  const sut = new GetMoviesUsecaseImpl(movieRepository, translatorService);
+  const sut = new GetMoviesUsecaseImpl(movieRepository);
 
-  return { sut, movieRepository, translatorService };
+  return { sut, movieRepository };
 };
 
-describe("getMoviesUsecaseImpl", () => {
+describe("GetMoviesUsecaseImpl", () => {
   const titleMock = "Guardians of the Galaxy Vol. 2";
-  const translatedTitleMock = "guardiões da galaxia vol. 2";
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
   it("Should be instantiated correctly", () => {
     const { sut } = makeSut();
-
     expect(sut).toBeInstanceOf(GetMoviesUsecaseImpl);
   });
 
-  it("Should call getMovies with the correct title", async () => {
-    const { sut, movieRepository, translatorService } = makeSut();
+  it("Should pass formatted title to repository", async () => {
+    const { sut, movieRepository } = makeSut();
+    const untrimmedUpperCase = "  MOVIE TITLE  ";
+    movieRepository.getMovieList.mockResolvedValue(listMoviesMock);
 
-    const params = {
-      query: titleMock.trim().toLowerCase(),
-      source: languagesEnum.PTBR,
-      target: languagesEnum.EN,
-    };
+    await sut.exec(untrimmedUpperCase);
 
-    translatorService.translator.mockResolvedValue(translatedTitleMock);
-
-    await sut.exec(titleMock);
-
-    expect(translatorService.translator).toHaveBeenCalledWith(params);
-
-    expect(movieRepository.getMovieList).toHaveBeenCalledWith(
-      translatedTitleMock,
-    );
+    expect(movieRepository.getMovieList).toHaveBeenCalledWith("movie title");
+    expect(movieRepository.getMovieList).toHaveBeenCalledTimes(1);
   });
 
-  it("Should return the correct movies when repository returns a list movies", async () => {
+  it("Should return movies list when repository succeeds", async () => {
     const { sut, movieRepository } = makeSut();
-
     movieRepository.getMovieList.mockResolvedValue(listMoviesMock);
 
     const result = await sut.exec(titleMock);
@@ -60,14 +48,44 @@ describe("getMoviesUsecaseImpl", () => {
     expect(result).toEqual(listMoviesMock);
   });
 
-  it("Should handle errors thrown by the repository", async () => {
+  it("Should call repository with empty string for empty input", async () => {
     const { sut, movieRepository } = makeSut();
+    const emptyList = new ListMoviesEntity({ movies: [] });
+    movieRepository.getMovieList.mockResolvedValue(emptyList);
 
-    const error = new Error("Repository generic error");
+    const result = await sut.exec("");
+
+    expect(movieRepository.getMovieList).toHaveBeenCalledWith("");
+    expect(result).toEqual(emptyList);
+  });
+
+  it("Should call repository with empty string for undefined input", async () => {
+    const { sut, movieRepository } = makeSut();
+    const emptyList = new ListMoviesEntity({ movies: [] });
+    movieRepository.getMovieList.mockResolvedValue(emptyList);
+
+    const result = await sut.exec(undefined as any);
+
+    expect(movieRepository.getMovieList).toHaveBeenCalledWith(undefined);
+    expect(result).toEqual(emptyList);
+  });
+
+  it("Should call repository with empty string for null input", async () => {
+    const { sut, movieRepository } = makeSut();
+    const emptyList = new ListMoviesEntity({ movies: [] });
+    movieRepository.getMovieList.mockResolvedValue(emptyList);
+
+    const result = await sut.exec(null as any);
+
+    expect(movieRepository.getMovieList).toHaveBeenCalledWith(undefined);
+    expect(result).toEqual(emptyList);
+  });
+
+  it("Should handle repository errors", async () => {
+    const { sut, movieRepository } = makeSut();
+    const error = new Error("Repository error");
     movieRepository.getMovieList.mockRejectedValue(error);
 
-    await expect(sut.exec(titleMock)).rejects.toThrow(
-      "Repository generic error",
-    );
+    await expect(sut.exec(titleMock)).rejects.toThrow("Repository error");
   });
 });

@@ -26,9 +26,9 @@ const makeSut = (): SutTypes => {
 };
 
 const makeUrlWithImdbID = (imdbID: string) =>
-  `${Environment.baseUrl}?i=${imdbID}&apikey=${Environment.accessKey}`;
+  `${Environment.baseUrl}/movies/${imdbID}`;
 const makeUrlWithTitle = (title?: string) =>
-  `${Environment.baseUrl}?s=${title}&apikey=${Environment.accessKey}`;
+  `${Environment.baseUrl}/movies?title=${title}`;
 
 const searchTitle = "Guardians of the Galaxy Vol. 2";
 
@@ -62,13 +62,11 @@ describe("MoviesRepositoryImpl", () => {
       ).rejects.toThrow(new AccessDeniedError());
     });
 
-    test("Should throw NotFoundError if getMovie returns Response = 'False' ", async () => {
+    test("Should throw NotFoundError if getMovie returns = 'False' ", async () => {
       const { sut, httpClientSpy } = makeSut();
       httpClientSpy.response = {
         statusCode: HttpStatusCode.ok,
-        body: {
-          Response: "False",
-        },
+        body: "False",
       };
 
       await expect(
@@ -116,13 +114,11 @@ describe("MoviesRepositoryImpl", () => {
       );
     });
 
-    test("Should return empty array if getMovieList returns Response = 'False' ", async () => {
+    test("Should return empty array if getMovieList returns = 'False' ", async () => {
       const { sut, httpClientSpy } = makeSut();
       httpClientSpy.response = {
         statusCode: HttpStatusCode.ok,
-        body: {
-          Response: "False",
-        },
+        body: "False",
       };
 
       const result = await sut.getMovieList(searchTitle);

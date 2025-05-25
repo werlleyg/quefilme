@@ -17,5 +17,4 @@ export const listMoviesMock: ListMoviesEntity = new ListMoviesEntity({
   movies: new Array(5).fill(movieMock),
 });
 
-export const mockGenerateResponse =
-  "Guardians of the Galaxy Vol. 2 - tt3896198";
+export const mockGenerateResponse = movieMock;
