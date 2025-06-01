@@ -2,6 +2,12 @@
 
 Project updates
 
+### [0.3.2] 2024 - 05 - 31
+
+### Fix
+
+- Adjust immutability of the component images.
+
 ### [0.3.1] 2024 - 05 - 31
 
 ### Fix
