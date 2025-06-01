@@ -27,6 +27,7 @@ function MovieCard({
   return (
     <CustomCard onClick={onClick} align={align}>
       <Image
+        key={title}
         aria-label={title}
         src={image}
         alt={title}
